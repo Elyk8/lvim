@@ -49,10 +49,6 @@ nnoremap O O<Esc>
 
 " autocorrection
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" accordion expand traversal of folds
-nnoremap z] :<C-u>silent! normal! zc<CR>zjzozz 
-nnoremap z[ :<C-u>silent! normal! zc<CR>zkzo[zzz
 ]]
 
 -- Builtin plugins
@@ -67,10 +63,21 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.buffer = false
 
-lvim.vsnip_dir = os.getenv("HOME") .. "/.config/lvim/snippets"
+lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = { "bash", "lua", "cpp", "c", "latex", "html", "java", "json", "javascript", "bibtex" }
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "lua",
+  "cpp",
+  "c",
+  "latex",
+  "html",
+  "java",
+  "json",
+  "javascript",
+  "bibtex",
+}
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- generic LSP settings
@@ -85,7 +92,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- end
 
 -- lua
-lvim.lang.lua.formatter.args = { "--config-path " .. os.getenv "HOME" .. "/.config/lvim/.stylua.toml" }
+lvim.lang.lua.formatter.args = { "--config-path " .. os.getenv "HOME" .. "/.local/share/lunarvim/lvim/.stylua.toml" }
 
 -- clang
 lvim.lang.c.formatter.args = {
@@ -155,7 +162,7 @@ lvim.plugins = {
     "lervag/vimtex",
     ft = "tex",
     event = "BufRead",
-  }
+  },
 }
 
 -- Setting for https://github.com/LunarVim/Colorschemes
@@ -168,8 +175,9 @@ vim.g.italic_variables = false -- italic variables(Default: false)
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
-lvim.autocommands = {
+lvim.autocommands.custom_groups = {
   { "BufWritePost", "bm-files,bm-dirs", "!shortcuts" },
+  { "BufRead,BufNewFile", "Xresources,Xdefaults,xresources,xdefaults", "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   {
     "BufWritePost",
@@ -181,11 +189,10 @@ lvim.autocommands = {
 -- Additional Leader bindings for WhichKey
 
 lvim.builtin.which_key.mappings.o = {
-    name = "+Scripts",
-    c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
-    p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
-    s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
+  name = "+Scripts",
+  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
+  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
+  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
 }
 
 -- PERSONAL SETTINGS
-
