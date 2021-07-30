@@ -2,9 +2,12 @@
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "darkplus"
+lvim.colorscheme = "tokyonight"
+lvim.transparent_window = false
 
 -- SETTINGS
+
+vim.opt.timeoutlen = 250
 
 -- folding options
 vim.opt.foldclose = "all"
@@ -16,6 +19,9 @@ vim.opt.foldopen = "all"
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = ">>>>>{,}<<<<<"
 
+vim.opt.inccommand = "split" -- Preview substitute live
+
+vim.opt.wrap = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -49,6 +55,9 @@ nnoremap O O<Esc>
 
 " autocorrection
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" Replace all is aliased to S.
+nnoremap S :%s//g<Left><Left>
 ]]
 
 -- Builtin plugins
@@ -78,7 +87,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "javascript",
   "bibtex",
 }
-lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
 -- you can set a custom on_attach function that will be used for all the language servers
@@ -91,10 +100,13 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
+lvim.lsp.diagnostics.signs = true
+lvim.lsp.diagnostics.underline = false
+
 -- lua
 lvim.lang.lua.formatter.args = { "--config-path " .. os.getenv "HOME" .. "/.local/share/lunarvim/lvim/.stylua.toml" }
 
--- clang
+-- -- clang
 lvim.lang.c.formatter.args = {
   [[ -style="{ BasedOnStyle: Microsoft, IndentWidth: 4, ColumnLimit: 0,
   AlignConsecutiveAssignments: AcrossEmptyLinesAndComments,
@@ -138,6 +150,7 @@ lvim.plugins = {
     end,
   },
   { "lunarvim/colorschemes" },
+  { "folke/tokyonight.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufRead",
@@ -167,22 +180,29 @@ lvim.plugins = {
 
 -- Setting for https://github.com/LunarVim/Colorschemes
 
-vim.g.transparent_background = true -- transparent background(Default: false)
+vim.g.transparent_background = false -- transparent background(Default: false)
 vim.g.italic_comments = true -- italic comments(Default: true)
 vim.g.italic_keywords = true -- italic keywords(Default: true)
 vim.g.italic_functions = true -- italic functions(Default: false)
 vim.g.italic_variables = false -- italic variables(Default: false)
 
+-- Setting for tokyonight
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 lvim.autocommands.custom_groups = {
   { "BufWritePost", "bm-files,bm-dirs", "!shortcuts" },
-  { "BufRead,BufNewFile", "Xresources,Xdefaults,xresources,xdefaults", "set filetype=xdefaults" },
+  { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   {
     "BufWritePost",
-    "~/.local/src/dwmblocks/config.h",
-    "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall -q dwmblocks; setsid -f dwmblocks }",
+    "~/.local/src/dwmblocks/blocks.h",
+    "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks; setsid -f dwmblocks }",
   },
 }
 
@@ -194,5 +214,3 @@ lvim.builtin.which_key.mappings.o = {
   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
   s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
 }
-
--- PERSONAL SETTINGS
