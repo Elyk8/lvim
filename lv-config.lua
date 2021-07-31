@@ -72,6 +72,9 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.buffer = false
 
+lvim.builtin.galaxyline.colors.alt_bg = "#1a1b26"
+lvim.builtin.galaxyline.colors.grey = "#c0caf5"
+
 lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -102,16 +105,6 @@ lvim.builtin.treesitter.highlight.enable = true
 
 lvim.lsp.diagnostics.signs = true
 lvim.lsp.diagnostics.underline = false
-
--- lua
-lvim.lang.lua.formatter.args = { "--config-path " .. os.getenv "HOME" .. "/.local/share/lunarvim/lvim/.stylua.toml" }
-
--- -- clang
-lvim.lang.c.formatter.args = {
-  [[ -style="{ BasedOnStyle: Microsoft, IndentWidth: 4, ColumnLimit: 0,
-  AlignConsecutiveAssignments: AcrossEmptyLinesAndComments,
-  AlignConsecutiveBitFields: AcrossEmptyLinesAndComments }" ]],
-}
 
 -- Additional Plugins
 lvim.plugins = {
