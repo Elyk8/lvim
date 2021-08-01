@@ -25,7 +25,9 @@ vim.opt.wrap = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- keymappings
+-- KEYMAPPINGS
+
+-- Remaps
 
 lvim.leader = "space"
 
@@ -60,6 +62,18 @@ inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 nnoremap S :%s//g<Left><Left>
 ]]
 
+-- Additional Leader bindings for WhichKey
+
+lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen" }
+lvim.builtin.which_key.mappings.o = {
+  name = "+Scripts",
+  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
+  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
+  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
+}
+
+-- PLUGINS
+
 -- Builtin plugins
 
 lvim.builtin.dashboard.active = true
@@ -92,54 +106,20 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 lvim.builtin.treesitter.highlight.enable = true
 
--- generic LSP settings
--- you can set a custom on_attach function that will be used for all the language servers
--- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
-
-lvim.lsp.diagnostics.signs.active = false
-lvim.lsp.diagnostics.underline = false
-
 -- Additional Plugins
 lvim.plugins = {
   {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
     config = function()
-      require("neoscroll").setup {
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
-        hide_cursor = true, -- Hide cursor while scrolling
-        stop_eof = true, -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil, -- Default easing function
-        pre_hook = nil, -- Function to run before the scrolling animation starts
-        post_hook = nil, -- Function to run after the scrolling animation ends
-      }
+      require("user.neoscroll").config()
     end,
   },
   {
     "ethanholz/nvim-lastplace",
     event = "BufRead",
     config = function()
-      require("nvim-lastplace").setup {
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = {
-          "gitcommit",
-          "gitrebase",
-          "svn",
-          "hgcommit",
-        },
-        lastplace_open_folds = true,
-      }
+      require("user.nvim-lastplace").config()
     end,
   },
   { "lunarvim/colorschemes" },
@@ -148,16 +128,7 @@ lvim.plugins = {
     "norcalli/nvim-colorizer.lua",
     event = "BufRead",
     config = function()
-      require("colorizer").setup({ "*", "!vim" }, {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        RRGGBBAA = true, -- #RRGGBBAA hex codes
-        rgb_fn = true, -- CSS rgb() and rgba() functions
-        hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-      })
-      vim.cmd "ColorizerReloadAllBuffers"
+      require("user.colorizer").config()
     end,
   },
   {
@@ -168,6 +139,12 @@ lvim.plugins = {
     "lervag/vimtex",
     ft = "tex",
     event = "BufRead",
+  },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("user.zen").config()
+    end,
   },
 }
 
@@ -186,6 +163,13 @@ vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
+-- LSP Settings
+
+lvim.lsp.diagnostics.signs.active = false
+lvim.lsp.diagnostics.underline = false
+
+-- OTHERS
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 lvim.autocommands.custom_groups = {
@@ -199,11 +183,3 @@ lvim.autocommands.custom_groups = {
   },
 }
 
--- Additional Leader bindings for WhichKey
-
-lvim.builtin.which_key.mappings.o = {
-  name = "+Scripts",
-  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
-  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
-  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
-}
