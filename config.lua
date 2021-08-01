@@ -27,7 +27,7 @@ vim.opt.smartcase = true
 
 -- keymappings
 
-lvim.keys.leader_key = "space"
+lvim.leader = "space"
 
 vim.cmd [[
 nnoremap Y y$
@@ -103,7 +103,7 @@ lvim.builtin.treesitter.highlight.enable = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
-lvim.lsp.diagnostics.signs = true
+lvim.lsp.diagnostics.signs.active = false
 lvim.lsp.diagnostics.underline = false
 
 -- Additional Plugins
