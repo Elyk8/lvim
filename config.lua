@@ -126,14 +126,20 @@ lvim.plugins = {
   { "folke/tokyonight.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
-    event = "BufRead",
+    event = "BufReadPre",
     config = function()
       require("user.colorizer").config()
     end,
   },
   {
     "sindrets/diffview.nvim",
-    event = "BufRead",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewToggleFiles",
+    },
   },
   {
     "lervag/vimtex",
@@ -150,7 +156,7 @@ lvim.plugins = {
     "lukas-reineke/indent-blankline.nvim",
     -- event = "BufReadPre",
     config = function()
-      require("user.blankline")
+      require "user.blankline"
     end,
   },
 }
@@ -189,4 +195,3 @@ lvim.autocommands.custom_groups = {
     "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks; setsid -f dwmblocks }",
   },
 }
-
