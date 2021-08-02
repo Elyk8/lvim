@@ -1,4 +1,4 @@
---  general
+--  GENERAL
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
@@ -144,6 +144,13 @@ lvim.plugins = {
     "folke/zen-mode.nvim",
     config = function()
       require("user.zen").config()
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    -- event = "BufReadPre",
+    config = function()
+      require("user.blankline")
     end,
   },
 }
