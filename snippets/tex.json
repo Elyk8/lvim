@@ -1,4 +1,14 @@
 {
+	"environment": {
+		"prefix": "beg",
+		"body": "\\begin{$1}\n$0\n\\end{$1}",
+		"description": "general environment"
+	},
+	"figure": {
+		"prefix": "fig",
+		"body": "\\begin{figure}[H]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${1:<caption>}}\n\t\\label{fig:${2:$1}}\n\\end{figure}",
+		"description": "figure environment"
+	},
 	"inlineeq": {
 		"prefix": "mk",
 		"body": "\\( $1 \\)$0",

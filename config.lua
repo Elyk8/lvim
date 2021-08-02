@@ -192,6 +192,6 @@ lvim.autocommands.custom_groups = {
   {
     "BufWritePost",
     "~/.local/src/dwmblocks/blocks.h",
-    "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks; setsid -f dwmblocks }",
+    "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
   },
 }
