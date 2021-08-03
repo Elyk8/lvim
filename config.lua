@@ -30,36 +30,26 @@ vim.opt.smartcase = true
 -- Remaps
 
 lvim.leader = "space"
+lvim.keys.normal_mode = {
+  ["Y"] = "i<CR><Esc>PkJxJx",
+  ["gP"] = "i<CR><Esc>PkJxJx",
+  ["gp"] = "a<CR><Esc>PkJxJx",
+  ["o"] = "o<Esc>",
+  ["O"] = "O<Esc>",
+}
+
+lvim.keys.insert_mode = {
+  ["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>uA",
+}
+
+lvim.keys.visual_block_mode = {
+  ["p"] = '"_dP',
+}
 
 vim.cmd [[
-nnoremap Y y$
-
-" paste on cursor
-nnoremap gP i<CR><Esc>PkJxJx
-nnoremap gp a<CR><Esc>PkJxJx
-
-" delete without yanking
-"nnoremap <leader>d "_d
-"vnoremap <leader>d "_d
-
-" replace currently selected text with default register
-" without yanking it
-vnoremap p "_dP
-nnoremap gp a<CR><Esc>PkJxJx
-
-" replace exmode with gq
 map Q gq
-
-" save keypresses
 noremap ; :
-nnoremap o o<Esc>
-nnoremap O O<Esc>
-
-" autocorrection
-inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" Replace all is aliased to S.
-nnoremap S :%s//g<Left><Left>
+nnoremap S :%s//g<left><left>
 ]]
 
 -- Additional Leader bindings for WhichKey
