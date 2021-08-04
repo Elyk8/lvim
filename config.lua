@@ -28,34 +28,35 @@ vim.opt.smartcase = true
 -- KEYMAPPINGS
 
 -- Remaps
+local normalmaps = lvim.keys.normal_mode
+local insertmaps = lvim.keys.insert_mode
+local visualmaps = lvim.keys.visual_block_mode
 
 lvim.leader = "space"
-lvim.keys.normal_mode = {
-  ["Y"] = "i<CR><Esc>PkJxJx",
-  ["gP"] = "i<CR><Esc>PkJxJx",
-  ["gp"] = "a<CR><Esc>PkJxJx",
-  ["o"] = "o<Esc>",
-  ["O"] = "O<Esc>",
-}
 
-lvim.keys.insert_mode = {
-  ["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>uA",
-}
+normalmaps["Y"] = "y$"
+-- paste on cursor
+normalmaps["gP"] = "i<CR><Esc>PkJxJx"
+normalmaps["gp"] = "a<CR><Esc>PkJxJx"
 
-lvim.keys.visual_block_mode = {
-  ["p"] = '"_dP',
-}
+-- save keypresses
+normalmaps[";"] = ":"
+normalmaps["o"] = "o<Esc>"
+normalmaps["O"] = "O<Esc>"
 
-vim.cmd [[
-map Q gq
-noremap ; :
-nnoremap S :%s//g<left><left>
-]]
+insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
+
+-- replace currently selected text with default register without yanking it
+visualmaps["p"] = "\"_dP"
+visualmaps[";"] = ":"
+
+vim.cmd [[map Q gq]]
 
 -- Additional Leader bindings for WhichKey
+local which_keymappings = lvim.builtin.which_key.mappings
 
-lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen" }
-lvim.builtin.which_key.mappings.o = {
+which_keymappings["z"] = { "<cmd>ZenMode<cr>", "Zen" }
+which_keymappings.o = {
   name = "+Scripts",
   c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
