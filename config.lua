@@ -40,7 +40,7 @@ normalmaps["gP"] = "i<CR><Esc>PkJxJx"
 normalmaps["gp"] = "a<CR><Esc>PkJxJx"
 
 -- save keypresses
-normalmaps[";"] = ":"
+normalmaps[";"] = {":", { silent = false}}
 normalmaps["o"] = "o<Esc>"
 normalmaps["O"] = "O<Esc>"
 
