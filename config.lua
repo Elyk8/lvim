@@ -47,7 +47,7 @@ normalmaps["O"] = "O<Esc>"
 insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 
 -- replace currently selected text with default register without yanking it
-visualmaps["p"] = "\"_dP"
+visualmaps["p"] = '"_dP'
 visualmaps[";"] = ":"
 
 vim.cmd [[map Q gq]]
