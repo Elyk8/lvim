@@ -48,7 +48,7 @@ insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 
 -- replace currently selected text with default register without yanking it
 visualmaps["p"] = '"_dP'
-visualmaps[";"] = ":"
+visualmaps[";"] = {":", { silent = false}}
 
 vim.cmd [[map Q gq]]
 
@@ -75,7 +75,6 @@ lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.terminal.shade_terminals = false
 
 lvim.builtin.compe.autocomplete = true
-lvim.builtin.compe.source.buffer = false
 
 lvim.builtin.galaxyline.colors.alt_bg = "#1a1b26"
 lvim.builtin.galaxyline.colors.grey = "#c0caf5"
@@ -177,7 +176,6 @@ lvim.lsp.diagnostics.underline = false
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 lvim.autocommands.custom_groups = {
-  { "BufWritePost", "bm-files,bm-dirs", "!shortcuts" },
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   {
