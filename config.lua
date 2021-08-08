@@ -21,7 +21,6 @@ vim.opt.foldmarker = ">>>>>{,}<<<<<"
 
 vim.opt.inccommand = "split" -- Preview substitute live
 
-vim.opt.wrap = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
