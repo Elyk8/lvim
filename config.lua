@@ -2,7 +2,7 @@
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "doom-one"
 lvim.transparent_window = false
 
 -- SETTINGS
@@ -76,8 +76,8 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.neorg = true
 
-lvim.builtin.galaxyline.colors.alt_bg = "#1a1b26"
-lvim.builtin.galaxyline.colors.grey = "#c0caf5"
+lvim.builtin.galaxyline.colors.alt_bg = "#1c1f24"
+lvim.builtin.galaxyline.colors.grey = "#dfdfdf"
 
 lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
 
@@ -93,19 +93,11 @@ lvim.builtin.treesitter.ensure_installed = {
   "json",
   "javascript",
   "bibtex",
-  "norg",
 }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "vhyrro/neorg",
-    config = function()
-      require("user.neorg").config()
-    end,
-    requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-compe" },
-  },
   {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
@@ -122,6 +114,7 @@ lvim.plugins = {
   },
   { "lunarvim/colorschemes" },
   { "folke/tokyonight.nvim" },
+  { "NTBBloodbath/doom-one.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -167,12 +160,20 @@ vim.g.italic_keywords = true -- italic keywords(Default: true)
 vim.g.italic_functions = true -- italic functions(Default: false)
 vim.g.italic_variables = false -- italic variables(Default: false)
 
--- Setting for tokyonight
+-- Settings for tokyonight
 vim.g.tokyonight_transparent = true
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Settings for doom one
+vim.g.doom_one_enable_treesitter = true
+vim.g.doom_one_terminal_colors = false
+vim.g.doom_one_italic_comments = true
+vim.g.doom_one_transparent_background = false
+vim.g.doom_one_cursor_coloring = false
+vim.g.doom_one_telescope_highlights = true
 
 -- LSP Settings
 
