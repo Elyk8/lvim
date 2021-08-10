@@ -169,10 +169,10 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 -- Settings for doom one
 vim.g.doom_one_enable_treesitter = true
-vim.g.doom_one_terminal_colors = false
+vim.g.doom_one_terminal_colors = true
 vim.g.doom_one_italic_comments = true
 vim.g.doom_one_transparent_background = false
-vim.g.doom_one_cursor_coloring = false
+vim.g.doom_one_cursor_coloring = true
 vim.g.doom_one_telescope_highlights = true
 
 -- LSP Settings
@@ -192,4 +192,5 @@ lvim.autocommands.custom_groups = {
     "~/.local/src/dwmblocks/blocks.h",
     "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
   },
+  { "colorscheme", "*", "hi Visual guifg=#FFFFFF" },
 }
