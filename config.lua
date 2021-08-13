@@ -8,6 +8,7 @@ lvim.transparent_window = false
 -- SETTINGS
 
 vim.opt.timeoutlen = 250
+vim.opt.wrap = true
 
 -- folding options
 vim.opt.foldclose = "all"
@@ -177,8 +178,6 @@ vim.g.doom_one_telescope_highlights = true
 
 -- LSP Settings
 
-lvim.lsp.diagnostics.signs.active = false
-lvim.lsp.diagnostics.underline = false
 
 -- OTHERS
 
