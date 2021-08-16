@@ -2,7 +2,7 @@
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "doom-one"
+lvim.colorscheme = "tokyonight"
 lvim.transparent_window = false
 
 -- SETTINGS
@@ -11,12 +11,12 @@ vim.opt.timeoutlen = 250
 vim.opt.wrap = true
 
 -- folding options
-vim.opt.foldclose = "all"
+-- vim.opt.foldclose = "all"
 -- vim.opt.foldcolumn = "1" -- Show the foldcolumn
 vim.opt.foldenable = true -- Turn on folding
--- vim.opt.foldlevel = 0 -- Autofold everything by default
+vim.opt.foldlevel = 0 -- Autofold everything by default
 vim.opt.foldnestmax = 1 -- I only like to fold outer functions
-vim.opt.foldopen = "all"
+-- vim.opt.foldopen = "all"
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = ">>>>>{,}<<<<<"
 
@@ -56,12 +56,12 @@ vim.cmd [[map Q gq]]
 local which_keymappings = lvim.builtin.which_key.mappings
 
 which_keymappings["z"] = { "<cmd>ZenMode<cr>", "Zen" }
--- which_keymappings.o = {
---   name = "+Scripts",
---   c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
---   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
---   s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
--- }
+which_keymappings.o = {
+  name = "+Scripts",
+  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
+  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
+  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
+}
 
 -- PLUGINS
 
@@ -77,8 +77,8 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.neorg = true
 
-lvim.builtin.galaxyline.colors.alt_bg = "#1c1f24"
-lvim.builtin.galaxyline.colors.grey = "#dfdfdf"
+lvim.builtin.galaxyline.colors.alt_bg = "#1a1b26"
+lvim.builtin.galaxyline.colors.grey = "#acb0d0"
 
 lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
 
@@ -178,6 +178,8 @@ vim.g.doom_one_telescope_highlights = true
 
 -- LSP Settings
 
+lvim.lsp.diagnostics.signs.active = false
+lvim.lsp.diagnostics.underline = false
 
 -- OTHERS
 
@@ -191,5 +193,4 @@ lvim.autocommands.custom_groups = {
     "~/.local/src/dwmblocks/blocks.h",
     "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
   },
-  { "colorscheme", "*", "hi Visual guifg=#FFFFFF" },
 }

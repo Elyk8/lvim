@@ -1,2 +1,1 @@
-vim.cmd "setl ts=4 sw=4"
-vim.opt.expandtab = false
+vim.cmd "set noet ci pi sts=0 sw=4 ts=4"
