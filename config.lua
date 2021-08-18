@@ -115,7 +115,6 @@ lvim.plugins = {
   },
   { "lunarvim/colorschemes" },
   { "folke/tokyonight.nvim" },
-  { "NTBBloodbath/doom-one.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
