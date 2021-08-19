@@ -52,6 +52,18 @@ visualmaps[";"] = { ":", { silent = false } }
 
 vim.cmd [[map Q gq]]
 
+lvim.builtin.telescope.on_config_done = function()
+  local actions = require "telescope.actions"
+  -- for input mode
+  lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
+  lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
+  lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
+  lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
+  -- for normal mode
+  lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
+  lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
+end
+
 -- Additional Leader bindings for WhichKey
 local which_keymappings = lvim.builtin.which_key.mappings
 
