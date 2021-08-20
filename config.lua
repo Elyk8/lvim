@@ -7,9 +7,6 @@ lvim.transparent_window = false
 
 -- SETTINGS
 
-vim.opt.timeoutlen = 250
-vim.opt.wrap = true
-
 -- folding options
 -- vim.opt.foldclose = "all"
 -- vim.opt.foldcolumn = "1" -- Show the foldcolumn
@@ -34,6 +31,7 @@ local visualmaps = lvim.keys.visual_block_mode
 
 lvim.leader = "space"
 
+-- yank to the end of line
 normalmaps["Y"] = "y$"
 -- paste on cursor
 normalmaps["gP"] = "i<CR><Esc>PkJxJx"
@@ -43,6 +41,8 @@ normalmaps["gp"] = "a<CR><Esc>PkJxJx"
 normalmaps[";"] = { ":", { silent = false } }
 normalmaps["o"] = "o<Esc>"
 normalmaps["O"] = "O<Esc>"
+
+normalmaps["<esc><esc>"] = "ze"
 
 insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 
