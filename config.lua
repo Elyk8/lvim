@@ -89,9 +89,6 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.neorg = true
 
-lvim.builtin.galaxyline.colors.alt_bg = "#1a1b26"
-lvim.builtin.galaxyline.colors.grey = "#acb0d0"
-
 lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
 
 -- if you don't want all the parsers change this to a table of the ones you want
