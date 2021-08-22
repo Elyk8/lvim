@@ -13,6 +13,8 @@ lvim.builtin.which_key.mappings.t = {
   v = { "<cmd>VimtexView<cr>", "View PDF" },
 }
 
+vim.g['tex_flavor'] = 'latex'
+
 -- Compile on initialization, cleanup on quit
 vim.api.nvim_exec(
   [[

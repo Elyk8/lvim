@@ -1,67 +1,74 @@
 {
-	"environment": {
-		"prefix": "beg",
-		"body": "\\begin{$1}\n$0\n\\end{$1}",
-		"description": "general environment"
-	},
-	"figure": {
-		"prefix": "fig",
-		"body": "\\begin{figure}[H]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${1:<caption>}}\n\t\\label{fig:${2:$1}}\n\\end{figure}",
-		"description": "figure environment"
-	},
-	"inlineeq": {
-		"prefix": "mk",
-		"body": "\\( $1 \\)$0",
-		"description": "inline equation"
-	},
-	"fulleq": {
-		"prefix": "dm",
-		"body": "\\[\n\t$1\n\\]\n$0",
-		"description": "inline equation"
-	},
-	"lessorequal": {
-		"prefix": "<=",
-		"body": "\\leq $0",
-		"description": "less or equal"
-	},
-	"greaterorequal": {
-		"prefix": ">=",
-		"body": "\\geq $0",
-		"description": "greater or equal"
-	},
-	"limits": {
-		"prefix": "lim",
-		"body": "\\lim_{$1 \to $2} $0",
-		"description": "greater or equal"
-	},
-	"square": {
-		"prefix": "sq",
-		"body": "^2$0",
-		"description": "inline equation"
-	},
-	"squareroot": {
-		"prefix": "sr",
-		"body": "\\sqrt{$1}$0",
-		"description": "inline equation"
-	},
-	"product": {
-		"prefix": "xx",
-		"body": "\\times $0",
-		"description": "product"
-	},
-	"sectionlabel": {
-		"prefix": "sec",
-		"body": "\\section{$1}%\n\\label{sec:${2:$1}} $0",
-		"description": "Section"
-	},
-	"subsectionlabel": {
-		"prefix": "sub",
-		"body": "\\subsection{$1}%\n\\label{sec:${2:$1}} $0",
-		"description": "Subsection"
-	},
-	"subsubsectionlabel": {
-		"prefix": "ssub",
-		"body": "\\subsubsection{$1}%\n\\label{sec:${2:$1}} $0",
-		"description": "Subsubsection"
-	}
+  "environment": {
+    "prefix": "beg",
+    "body": "\\begin{$1}\n$0\n\\end{$1}",
+    "description": "general environment"
+  },
+  "figure": {
+    "prefix": "fig",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\includegraphics[width=0.5\\textwidth]{${0:${TM_SELECTED_TEXT}}}",
+      "    \\caption{${1:<caption>}}",
+      "    \\label{fig:${2:$1}}",
+      "\\end{figure}"
+    ],
+    "description": "figure environment"
+  },
+  "inlineeq": {
+    "prefix": "mk",
+    "body": "\\( $1 \\)$0",
+    "description": "inline equation"
+  },
+  "fulleq": {
+    "prefix": "dm",
+    "body": "\\[\n\t$1\n\\]\n$0",
+    "description": "inline equation"
+  },
+  "lessorequal": {
+    "prefix": "<=",
+    "body": "\\leq $0",
+    "description": "less or equal"
+  },
+  "greaterorequal": {
+    "prefix": ">=",
+    "body": "\\geq $0",
+    "description": "greater or equal"
+  },
+  "limits": {
+    "prefix": "lim",
+    "body": "\\lim_{$1 \to $2} $0",
+    "description": "greater or equal"
+  },
+  "square": {
+    "prefix": "sq",
+    "body": "^2$0",
+    "description": "inline equation"
+  },
+  "squareroot": {
+    "prefix": "sr",
+    "body": "\\sqrt{$1}$0",
+    "description": "inline equation"
+  },
+  "product": {
+    "prefix": "xx",
+    "body": "\\times $0",
+    "description": "product"
+  },
+  "sectionlabel": {
+    "prefix": "sec",
+    "body": "\\section{$1}%\n\\label{sec:${2:$1}} $0",
+    "description": "Section"
+  },
+  "subsectionlabel": {
+    "prefix": "sub",
+    "body": "\\subsection{$1}%\n\\label{sec:${2:$1}} $0",
+    "description": "Subsection"
+  },
+  "subsubsectionlabel": {
+    "prefix": "ssub",
+    "body": "\\subsubsection{$1}%\n\\label{sec:${2:$1}} $0",
+    "description": "Subsubsection"
+  }
 }

@@ -15,7 +15,6 @@ vim.opt.foldlevel = 0 -- Autofold everything by default
 vim.opt.foldnestmax = 1 -- I only like to fold outer functions
 -- vim.opt.foldopen = "all"
 vim.opt.foldmethod = "marker"
-vim.opt.foldmarker = ">>>>>{,}<<<<<"
 
 vim.opt.inccommand = "split" -- Preview substitute live
 
@@ -201,4 +200,5 @@ lvim.autocommands.custom_groups = {
     "~/.local/src/dwmblocks/blocks.h",
     "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
   },
+  { "VimLeavePre", "*.tex", "!texclear %" },
 }
