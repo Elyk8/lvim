@@ -8,12 +8,9 @@ lvim.transparent_window = false
 -- SETTINGS
 
 -- folding options
--- vim.opt.foldclose = "all"
--- vim.opt.foldcolumn = "1" -- Show the foldcolumn
 vim.opt.foldenable = true -- Turn on folding
 vim.opt.foldlevel = 0 -- Autofold everything by default
 vim.opt.foldnestmax = 1 -- I only like to fold outer functions
--- vim.opt.foldopen = "all"
 vim.opt.foldmethod = "marker"
 
 vim.opt.inccommand = "split" -- Preview substitute live
@@ -163,9 +160,10 @@ lvim.plugins = {
   },
 }
 
--- Setting for https://github.com/LunarVim/Colorschemes
+-- THEMES
 
-vim.g.transparent_background = false -- transparent background(Default: false)
+-- Setting for https://github.com/LunarVim/Colorschemes
+vim.g.transparent_background = true -- transparent background(Default: false)
 vim.g.italic_comments = true -- italic comments(Default: true)
 vim.g.italic_keywords = true -- italic keywords(Default: true)
 vim.g.italic_functions = true -- italic functions(Default: false)
@@ -186,7 +184,6 @@ lvim.lsp.diagnostics.underline = false
 -- OTHERS
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-
 lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
