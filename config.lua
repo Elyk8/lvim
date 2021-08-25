@@ -4,6 +4,7 @@ lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.colorscheme = "tokyonight"
 lvim.transparent_window = false
+lvim.line_wrap_cursor_movement = false
 
 -- SETTINGS
 
@@ -74,7 +75,6 @@ which_keymappings.o = {
 -- PLUGINS
 
 -- Builtin plugins
-
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
