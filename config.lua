@@ -144,6 +144,9 @@ lvim.plugins = {
     "lervag/vimtex",
     ft = "tex",
     event = "BufRead",
+    config = function()
+      vim.cmd("call vimtex#init()")
+    end,
   },
   {
     "folke/zen-mode.nvim",
@@ -174,14 +177,6 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-
--- Settings for doom one
-vim.g.doom_one_enable_treesitter = true
-vim.g.doom_one_terminal_colors = true
-vim.g.doom_one_italic_comments = true
-vim.g.doom_one_transparent_background = false
-vim.g.doom_one_cursor_coloring = true
-vim.g.doom_one_telescope_highlights = true
 
 -- LSP Settings
 
