@@ -1,31 +1,34 @@
+-- LOCAL VARIABLES
+
+local normalmaps = lvim.keys.normal_mode
+local insertmaps = lvim.keys.insert_mode
+local visualmaps = lvim.keys.visual_block_mode
+local o = vim.opt
+local cmd = vim.cmd
+
 --  GENERAL
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.colorscheme = "tokyonight"
 lvim.transparent_window = false
-lvim.line_wrap_cursor_movement = false
 
 -- SETTINGS
 
 -- folding options
-vim.opt.foldenable = true -- Turn on folding
-vim.opt.foldlevel = 0 -- Autofold everything by default
-vim.opt.foldnestmax = 1 -- I only like to fold outer functions
-vim.opt.foldmethod = "marker"
+o.foldenable = true -- Turn on folding
+o.foldlevel = 0 -- Autofold everything by default
+o.foldnestmax = 1 -- I only like to fold outer functions
+o.foldmethod = "marker"
 
-vim.opt.inccommand = "split" -- Preview substitute live
+o.inccommand = "split" -- Preview substitute live
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+o.ignorecase = true
+o.smartcase = true
 
 -- KEYMAPPINGS
 
 -- Remaps
-local normalmaps = lvim.keys.normal_mode
-local insertmaps = lvim.keys.insert_mode
-local visualmaps = lvim.keys.visual_block_mode
-
 lvim.leader = "space"
 
 -- yank to the end of line
@@ -47,7 +50,7 @@ insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 visualmaps["p"] = '"_dP'
 visualmaps[";"] = { ":", { silent = false } }
 
-vim.cmd [[map Q gq]]
+cmd [[map Q gq]]
 
 lvim.builtin.telescope.on_config_done = function()
   local actions = require "telescope.actions"
@@ -142,7 +145,7 @@ lvim.plugins = {
     ft = "tex",
     event = "BufRead",
     config = function()
-      vim.cmd("call vimtex#init()")
+      vim.cmd "call vimtex#init()"
     end,
   },
   {
