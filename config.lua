@@ -121,7 +121,6 @@ lvim.plugins = {
       require("user.nvim-lastplace").config()
     end,
   },
-  { "lunarvim/colorschemes" },
   { "folke/tokyonight.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
@@ -164,13 +163,6 @@ lvim.plugins = {
 }
 
 -- THEMES
-
--- Setting for https://github.com/LunarVim/Colorschemes
-vim.g.transparent_background = true -- transparent background(Default: false)
-vim.g.italic_comments = true -- italic comments(Default: true)
-vim.g.italic_keywords = true -- italic keywords(Default: true)
-vim.g.italic_functions = true -- italic functions(Default: false)
-vim.g.italic_variables = false -- italic variables(Default: false)
 
 -- Settings for tokyonight
 vim.g.tokyonight_transparent = true
