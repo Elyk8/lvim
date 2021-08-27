@@ -10,8 +10,8 @@ local cmd = vim.cmd
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "tokyonight"
-lvim.transparent_window = false
+lvim.colorscheme = "doom-one"
+lvim.transparent_window = true
 
 -- SETTINGS
 
@@ -122,6 +122,7 @@ lvim.plugins = {
     end,
   },
   { "folke/tokyonight.nvim" },
+  { "NTBBloodbath/doom-one.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -164,6 +165,14 @@ lvim.plugins = {
 
 -- THEMES
 
+-- Settings for doom one
+vim.g.doom_one_enable_treesitter = true
+vim.g.doom_one_terminal_colors = true
+vim.g.doom_one_italic_comments = true
+vim.g.doom_one_transparent_background = false
+vim.g.doom_one_cursor_coloring = true
+vim.g.doom_one_telescope_highlights = true
+
 -- Settings for tokyonight
 vim.g.tokyonight_transparent = true
 vim.g.tokyonight_style = "night"
@@ -187,5 +196,4 @@ lvim.autocommands.custom_groups = {
     "~/.local/src/dwmblocks/blocks.h",
     "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
   },
-  { "VimLeavePre", "*.tex", "!texclear %" },
 }
