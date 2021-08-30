@@ -1,8 +1,8 @@
 -- LOCAL VARIABLES
 
-local normalmaps = lvim.keys.normal_mode
-local insertmaps = lvim.keys.insert_mode
-local visualmaps = lvim.keys.visual_block_mode
+local nmap = lvim.keys.normal_mode
+local imap = lvim.keys.insert_mode
+local vmap = lvim.keys.visual_block_mode
 local o = vim.opt
 local cmd = vim.cmd
 
@@ -10,8 +10,8 @@ local cmd = vim.cmd
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "doom-one"
-lvim.transparent_window = true
+lvim.colorscheme = "darkplus"
+lvim.transparent_window = false
 
 -- SETTINGS
 
@@ -32,23 +32,23 @@ o.smartcase = true
 lvim.leader = "space"
 
 -- yank to the end of line
-normalmaps["Y"] = "y$"
+nmap["Y"] = "y$"
 -- paste on cursor
-normalmaps["gP"] = "i<CR><Esc>PkJxJx"
-normalmaps["gp"] = "a<CR><Esc>PkJxJx"
+nmap["gP"] = "i<CR><Esc>PkJxJx"
+nmap["gp"] = "a<CR><Esc>PkJxJx"
 
 -- save keypresses
-normalmaps[";"] = { ":", { silent = false } }
-normalmaps["o"] = "o<Esc>"
-normalmaps["O"] = "O<Esc>"
+nmap[";"] = { ":", { silent = false } }
+nmap["o"] = "o<Esc>"
+nmap["O"] = "O<Esc>"
 
-normalmaps["<esc><esc>"] = "ze"
+nmap["<esc><esc>"] = "ze"
 
-insertmaps["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
+imap["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 
 -- replace currently selected text with default register without yanking it
-visualmaps["p"] = '"_dP'
-visualmaps[";"] = { ":", { silent = false } }
+vmap["p"] = '"_dP'
+vmap[";"] = { ":", { silent = false } }
 
 cmd [[map Q gq]]
 
@@ -88,7 +88,7 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.compe.autocomplete = true
 lvim.builtin.compe.source.neorg = true
 
-lvim.vsnip_dir = os.getenv "HOME" .. "/.config/lvim/snippets"
+lvim.vsnip_dir = vim.loop.os_homedir() .. "/.config/lvim/snippets"
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -121,8 +121,7 @@ lvim.plugins = {
       require("user.nvim-lastplace").config()
     end,
   },
-  { "folke/tokyonight.nvim" },
-  { "NTBBloodbath/doom-one.nvim" },
+  { "LunarVim/Colorschemes" },
   {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -161,24 +160,30 @@ lvim.plugins = {
       require "user.blankline"
     end,
   },
+  {
+    "ellisonleao/glow.nvim",
+    ft = "markdown",
+    event = "BufRead",
+    cmd = "Glow",
+  },
+  {
+    "jubnzv/mdeval.nvim",
+    ft = "markdown",
+    event = "BufRead",
+    config = function()
+      require("user.mdeval").config()
+    end,
+  }
 }
 
 -- THEMES
 
--- Settings for doom one
-vim.g.doom_one_enable_treesitter = true
-vim.g.doom_one_terminal_colors = true
-vim.g.doom_one_italic_comments = true
-vim.g.doom_one_transparent_background = false
-vim.g.doom_one_cursor_coloring = true
-vim.g.doom_one_telescope_highlights = true
-
--- Settings for tokyonight
-vim.g.tokyonight_transparent = true
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+-- Settings for lunarvim colorschemes
+vim.g.transparent_background = true        -- transparent background(Default: false)
+vim.g.italic_comments = true               -- italic comments(Default: true)
+vim.g.italic_keywords = true               -- italic keywords(Default: true)
+vim.g.italic_functions = true              -- italic functions(Default: false)
+vim.g.italic_variables = true              -- italic variables(Default: false)
 
 -- LSP Settings
 
