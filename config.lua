@@ -163,8 +163,7 @@ lvim.plugins = {
   {
     "ellisonleao/glow.nvim",
     ft = "markdown",
-    event = "BufRead",
-    cmd = "Glow",
+    cmd = { "Glow", "GlowInstall" },
   },
   {
     "jubnzv/mdeval.nvim",
@@ -173,17 +172,17 @@ lvim.plugins = {
     config = function()
       require("user.mdeval").config()
     end,
-  }
+  },
 }
 
 -- THEMES
 
 -- Settings for lunarvim colorschemes
-vim.g.transparent_background = true        -- transparent background(Default: false)
-vim.g.italic_comments = true               -- italic comments(Default: true)
-vim.g.italic_keywords = true               -- italic keywords(Default: true)
-vim.g.italic_functions = true              -- italic functions(Default: false)
-vim.g.italic_variables = true              -- italic variables(Default: false)
+vim.g.transparent_background = true -- transparent background(Default: false)
+vim.g.italic_comments = true -- italic comments(Default: true)
+vim.g.italic_keywords = true -- italic keywords(Default: true)
+vim.g.italic_functions = true -- italic functions(Default: false)
+vim.g.italic_variables = true -- italic variables(Default: false)
 
 -- LSP Settings
 
@@ -196,9 +195,4 @@ lvim.lsp.diagnostics.underline = false
 lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
-  {
-    "BufWritePost",
-    "~/.local/src/dwmblocks/blocks.h",
-    "!cd ~/.local/src/dwmblocks/; sudo make install clean && { killall dwmblocks && setsid dwmblocks }",
-  },
 }
