@@ -85,9 +85,6 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.terminal.shade_terminals = false
 
-lvim.builtin.compe.autocomplete = true
-lvim.builtin.compe.source.neorg = true
-
 lvim.vsnip_dir = vim.loop.os_homedir() .. "/.config/lvim/snippets"
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -102,6 +99,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "json",
   "javascript",
   "bibtex",
+  "python",
 }
 lvim.builtin.treesitter.highlight.enable = true
 
@@ -142,7 +140,6 @@ lvim.plugins = {
   {
     "lervag/vimtex",
     ft = "tex",
-    event = "BufRead",
     config = function()
       vim.cmd "call vimtex#init()"
     end,
@@ -154,21 +151,12 @@ lvim.plugins = {
     end,
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    -- event = "BufReadPre",
-    config = function()
-      require "user.blankline"
-    end,
-  },
-  {
     "ellisonleao/glow.nvim",
     ft = "markdown",
-    cmd = { "Glow", "GlowInstall" },
   },
   {
     "jubnzv/mdeval.nvim",
     ft = "markdown",
-    event = "BufRead",
     config = function()
       require("user.mdeval").config()
     end,
@@ -186,8 +174,7 @@ vim.g.italic_variables = true -- italic variables(Default: false)
 
 -- LSP Settings
 
-lvim.lsp.diagnostics.signs.active = false
-lvim.lsp.diagnostics.underline = false
+lvim.lsp.diagnostics.virtual_text = false
 
 -- OTHERS
 
@@ -195,4 +182,6 @@ lvim.lsp.diagnostics.underline = false
 lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
+  { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
+  { "BufRead,BufNewFile", "*.rasi", "set filetype=c" },
 }

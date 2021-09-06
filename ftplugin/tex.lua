@@ -1,6 +1,7 @@
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_fold_enabled = 0
+vim.g.vimtex_quickfix_open_on_warning = 0
 
 lvim.builtin.which_key.mappings.t = {
   name = "+Latex",
@@ -28,8 +29,8 @@ vim.api.nvim_exec(
 )
 
 vim.cmd [[
-inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+inoremap <C-i> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <C-i> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
-setl ts=4 sw=4 wrap
+setl ts=4 sw=4 wrap linebreak
 ]]
