@@ -6,6 +6,7 @@ vim.g.vimtex_quickfix_open_on_warning = 0
 lvim.builtin.which_key.mappings.t = {
   name = "+Latex",
   c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
+  C = { "<cmd>VimtexClean<cr>", "Clean build files" },
   e = { "<cmd>VimtexErrors<cr>", "Show Errors" },
   f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },
   i = { "<cmd>VimtexInfo<cr>", "Project Information" },
@@ -22,7 +23,6 @@ vim.api.nvim_exec(
         augroup vimtex_event_1
             au!
             au User VimtexEventQuit     call vimtex#compiler#clean(0)
-            au User VimtexEventInitPost call vimtex#compiler#compile()
         augroup END
     ]],
   false
