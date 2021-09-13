@@ -106,6 +106,20 @@ lvim.builtin.treesitter.highlight.enable = true
 -- Additional Plugins
 lvim.plugins = {
   {
+    "tzachar/cmp-tabnine",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+      }
+    end,
+
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  },
+  {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
     config = function()
@@ -161,6 +175,26 @@ lvim.plugins = {
       require("user.mdeval").config()
     end,
   },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   config = function()
+  --     require("neorg").setup {
+  --       -- Tell Neorg what modules to load
+  --       load = {
+  --         ["core.defaults"] = {}, -- Load all the default modules
+  --         ["core.norg.concealer"] = {}, -- Allows for use of icons
+  --         ["core.norg.dirman"] = { -- Manage your directories with Neorg
+  --           config = {
+  --             workspaces = {
+  --               my_workspace = "~/neorg",
+  --             },
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  --   requires = "nvim-lua/plenary.nvim",
+  -- },
 }
 
 -- THEMES
@@ -185,3 +219,14 @@ lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=c" },
 }
+
+-- require("nvim-treesitter.parsers").get_parser_configs().norg = {
+--   install_info = {
+--     url = "https://github.com/nvim-neorg/tree-sitter-norg",
+--     files = { "src/parser.c", "src/scanner.cc" },
+--     branch = "main",
+--   },
+-- }
+-- lvim.builtin.cmp.sources = {
+--   { name = "neorg" },
+-- }
