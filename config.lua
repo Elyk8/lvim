@@ -85,15 +85,12 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.terminal.shade_terminals = false
 
-lvim.vsnip_dir = vim.loop.os_homedir() .. "/.config/lvim/snippets"
-
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "lua",
   "cpp",
   "c",
-  "latex",
   "html",
   "java",
   "json",
@@ -175,12 +172,14 @@ lvim.plugins = {
       require("user.mdeval").config()
     end,
   },
-  {
-    "nvim-neorg/neorg",
-    config = function()
-      require("user.neorg").config()
-    end,
-  },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   ft = "norg",
+  --   config = function()
+  --     require("user.neorg").config()
+  --   end,
+  --   requires = "vhyrro/neorg-telescope",
+  -- },
 }
 
 -- THEMES
@@ -208,14 +207,14 @@ lvim.autocommands.custom_groups = {
 
 -- Neorg settings
 
-require("nvim-treesitter.parsers").get_parser_configs().norg = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg",
-    files = { "src/parser.c", "src/scanner.cc" },
-    branch = "main",
-  },
-}
+-- lvim.builtin.cmp.sources = {
+--   { name = "neorg" },
+-- }
 
-lvim.builtin.cmp.sources = {
-  { name = "neorg" },
-}
+-- require("nvim-treesitter.parsers").get_parser_configs().norg = {
+--   install_info = {
+--     url = "https://github.com/nvim-neorg/tree-sitter-norg",
+--     files = { "src/parser.c", "src/scanner.cc" },
+--     branch = "main",
+--   },
+-- }
