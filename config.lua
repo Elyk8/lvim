@@ -95,7 +95,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "java",
   "json",
   "javascript",
-  "bibtex",
   "python",
 }
 lvim.builtin.treesitter.highlight.enable = true
@@ -157,6 +156,7 @@ lvim.plugins = {
   },
   {
     "folke/zen-mode.nvim",
+    cmd = "ZenMode",
     config = function()
       require("user.zen").config()
     end,
