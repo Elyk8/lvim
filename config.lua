@@ -98,6 +98,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
 }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.indent = { enable = true, disable = { "yaml", "python" } }
 
 -- Additional Plugins
 lvim.plugins = {
