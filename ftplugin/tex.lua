@@ -4,6 +4,12 @@ vim.g.vimtex_fold_enabled = 0
 vim.g.vimtex_quickfix_open_on_warning = 0
 vim.g.vimtex_quickfix_autoclose_after_keystrokes = 5
 
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.conceallevel = 2
+
 lvim.builtin.which_key.mappings.t = {
   name = "+Latex",
   c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
@@ -30,8 +36,7 @@ vim.api.nvim_exec(
 )
 
 vim.cmd [[
+hi Conceal guibg=NONE
 inoremap <C-i> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
 nnoremap <C-i> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
-
-setl ts=4 sw=4 wrap linebreak
 ]]
