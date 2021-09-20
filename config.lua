@@ -203,7 +203,7 @@ lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
-  { "BufRead,BufNewFile", "*.rasi", "set filetype=c" },
+  { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
 }
 
 -- Neorg settings
