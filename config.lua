@@ -3,7 +3,7 @@
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.colorscheme = "darkplus"
-lvim.transparent_window = true
+lvim.transparent_window = false
 
 -- SETTINGS
 
@@ -57,19 +57,19 @@ end
 
 -- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
--- lvim.builtin.which_key.mappings.o = {
---   name = "+Scripts",
---   c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
---   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
---   s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
--- }
+lvim.builtin.which_key.mappings.o = {
+  name = "+Scripts",
+  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
+  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
+  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
+}
 
 -- PLUGINS
 
 -- Builtin plugins
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
--- lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.terminal.shade_terminals = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -143,14 +143,29 @@ lvim.plugins = {
       require "user.matchup"
     end,
   },
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require("user.neoscroll").config()
+    end,
+  },
 }
+
+-- THEMES
+
+vim.g.transparent_background = true -- transparent background(Default: false)
+vim.g.italic_comments = true -- italic comments(Default: true)
+vim.g.italic_keywords = true -- italic keywords(Default: true)
+vim.g.italic_functions = true -- italic functions(Default: false)
+vim.g.italic_variables = true -- italic variables(Default: false)
 
 -- OTHERS
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
---   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
---   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
---   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
--- }
+lvim.autocommands.custom_groups = {
+  { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
+  { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
+  { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
+  { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
+}
