@@ -59,7 +59,7 @@ end
 lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
 lvim.builtin.which_key.mappings.o = {
   name = "+Scripts",
-  c = { [[<cmd>w! | ! compiler %<CR>]], "Compile using compiler" },
+  c = { [[<cmd>terminal compiler %<CR>]], "Compile using compiler" },
   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
   s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
 }
@@ -105,6 +105,13 @@ lvim.plugins = {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("user.colorizer").config()
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    -- event = "BufReadPre",
+    config = function()
+      require "user.blankline"
     end,
   },
   {
@@ -165,6 +172,7 @@ vim.g.italic_variables = true -- italic variables(Default: false)
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
+  { "BufWritePost", "bm-dirs,bm-files", "!shortcuts" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
