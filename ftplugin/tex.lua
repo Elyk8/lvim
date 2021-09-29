@@ -25,18 +25,13 @@ lvim.builtin.which_key.mappings.t = {
 vim.g["tex_flavor"] = "latex"
 
 -- Compile on initialization, cleanup on quit
-vim.api.nvim_exec(
-  [[
-        augroup vimtex_event_1
-            au!
-            au User VimtexEventQuit     call vimtex#compiler#clean(0)
-        augroup END
-    ]],
-  false
-)
-
 vim.cmd [[
 hi Conceal guibg=NONE
 inoremap <C-i> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
 nnoremap <C-i> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
+augroup vimtex_event_1
+  au!
+  au User VimtexEventQuit     call vimtex#compiler#clean(0)
+augroup END
 ]]
