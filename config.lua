@@ -7,6 +7,9 @@ lvim.transparent_window = false
 
 -- SETTINGS
 
+vim.g.loaded_netrw       = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.foldenable = true -- Turn on folding
 vim.opt.foldlevel = 0 -- Autofold everything by default
 vim.opt.foldnestmax = 1 -- I only like to fold outer functions
@@ -96,6 +99,7 @@ lvim.plugins = {
   },
   {
     "ethanholz/nvim-lastplace",
+    event = "BufReadPre",
     config = function()
       require("user.nvim-lastplace").config()
     end,
@@ -172,6 +176,7 @@ vim.g.italic_variables = true -- italic variables(Default: false)
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
+  { "BufRead,BufNewFile", "*.tsv", "set filetype=tsv" },
   { "BufWritePost", "bm-dirs,bm-files", "!shortcuts" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
