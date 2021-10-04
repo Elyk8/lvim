@@ -2,12 +2,12 @@
 
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "darkplus"
+lvim.colorscheme = "tokyonight"
 lvim.transparent_window = false
 
 -- SETTINGS
 
-vim.g.loaded_netrw       = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.foldenable = true -- Turn on folding
@@ -99,14 +99,16 @@ lvim.plugins = {
   },
   {
     "ethanholz/nvim-lastplace",
-    event = "BufReadPre",
+    event = "BufRead",
     config = function()
       require("user.nvim-lastplace").config()
     end,
   },
   { "LunarVim/Colorschemes" },
+  { "folke/tokyonight.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
+    event = "BufReadPre",
     config = function()
       require("user.colorizer").config()
     end,
@@ -133,6 +135,8 @@ lvim.plugins = {
     ft = "tex",
     config = function()
       vim.cmd "call vimtex#init()"
+      require("user.latex").vimtex()
+      require("user.latex").settings()
     end,
   },
   {
@@ -171,6 +175,15 @@ vim.g.italic_keywords = true -- italic keywords(Default: true)
 vim.g.italic_functions = true -- italic functions(Default: false)
 vim.g.italic_variables = true -- italic variables(Default: false)
 
+-- Example config in Lua
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
 -- OTHERS
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -182,3 +195,6 @@ lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
 }
+
+require("user.external-helpers").formatters()
+require("user.external-helpers").linters()
