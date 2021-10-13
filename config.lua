@@ -7,9 +7,6 @@ lvim.transparent_window = false
 
 -- SETTINGS
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.foldenable = true -- Turn on folding
 vim.opt.foldlevel = 0 -- Autofold everything by default
 vim.opt.foldnestmax = 1 -- I only like to fold outer functions
@@ -38,13 +35,21 @@ lvim.keys.normal_mode["<esc><esc>"] = "ze"
 lvim.keys.insert_mode["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 
 -- replace currently selected text with default register without yanking it
+lvim.keys.normal_mode["x"] = '"_x'
+lvim.keys.normal_mode["X"] = '"_X'
 lvim.keys.visual_mode["p"] = '"_dP'
 
-vim.cmd [[map Q gq]]
+vim.cmd [[
+  map Q gq
+  map ; :
+]]
 
 -- LSP Settings
 
 lvim.lsp.diagnostics.virtual_text = false
+
+require("user.external-helpers").formatters()
+require("user.external-helpers").linters()
 
 lvim.builtin.telescope.on_config_done = function()
   local actions = require "telescope.actions"
@@ -83,20 +88,6 @@ lvim.builtin.treesitter.indent.disable = { "python" }
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "tzachar/cmp-tabnine",
-    config = function()
-      local tabnine = require "cmp_tabnine.config"
-      tabnine:setup {
-        max_lines = 1000,
-        max_num_results = 20,
-        sort = true,
-      }
-    end,
-
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp",
-  },
   {
     "ethanholz/nvim-lastplace",
     event = "BufRead",
@@ -195,6 +186,3 @@ lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
 }
-
-require("user.external-helpers").formatters()
-require("user.external-helpers").linters()
