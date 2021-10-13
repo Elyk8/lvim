@@ -248,7 +248,7 @@ _G.packer_plugins = {
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/opt/vim-matchup"
   },
   vimtex = {
-    config = { "\27LJ\1\2\1\0\0\2\0\a\0\0154\0\0\0007\0\1\0%\1\2\0>\0\2\0014\0\3\0%\1\4\0>\0\2\0027\0\5\0>\0\1\0014\0\3\0%\1\4\0>\0\2\0027\0\6\0>\0\1\1G\0\1\0\rsettings\vvimtex\15user.latex\frequire\23call vimtex#init()\bcmd\bvim\0" },
+    config = { "\27LJ\1\0026\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\23call vimtex#init()\bcmd\bvim\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/opt/vimtex"

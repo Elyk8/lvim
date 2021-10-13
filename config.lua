@@ -126,8 +126,6 @@ lvim.plugins = {
     ft = "tex",
     config = function()
       vim.cmd "call vimtex#init()"
-      require("user.latex").vimtex()
-      require("user.latex").settings()
     end,
   },
   {
