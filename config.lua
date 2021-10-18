@@ -4,6 +4,7 @@ lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.colorscheme = "tokyonight"
 lvim.transparent_window = false
+lvim.line_wrap_cursor_movement = false
 
 -- SETTINGS
 
@@ -51,18 +52,6 @@ lvim.lsp.diagnostics.virtual_text = false
 require("user.external-helpers").formatters()
 require("user.external-helpers").linters()
 
-lvim.builtin.telescope.on_config_done = function()
-  local actions = require "telescope.actions"
-  -- for input mode
-  lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
-  lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
-  lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
-  -- for normal mode
-  lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
-end
-
 -- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
 lvim.builtin.which_key.mappings.o = {
@@ -95,7 +84,6 @@ lvim.plugins = {
       require("user.nvim-lastplace").config()
     end,
   },
-  { "LunarVim/Colorschemes" },
   { "folke/tokyonight.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
@@ -154,17 +142,18 @@ lvim.plugins = {
       require("user.neoscroll").config()
     end,
   },
+  {
+    "phaazon/hop.nvim",
+    as = "hop",
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require("user.hop").config()
+    end,
+  },
 }
 
 -- THEMES
 
-vim.g.transparent_background = true -- transparent background(Default: false)
-vim.g.italic_comments = true -- italic comments(Default: true)
-vim.g.italic_keywords = true -- italic keywords(Default: true)
-vim.g.italic_functions = true -- italic functions(Default: false)
-vim.g.italic_variables = true -- italic variables(Default: false)
-
--- Example config in Lua
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 vim.g.tokyonight_italic_functions = true
@@ -181,6 +170,6 @@ lvim.autocommands.custom_groups = {
   { "BufRead,BufNewFile", "*.tsv", "set filetype=tsv" },
   { "BufWritePost", "bm-dirs,bm-files", "!shortcuts" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
-  { "BufRead,BufNewFile", "*.ms,*.me,*.mom,*.man", "set filetype=groff" },
+  { "BufRead,BufNewFile", "*.ms,*.me,*.mom", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
 }
