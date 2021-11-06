@@ -39,6 +39,7 @@ lvim.keys.insert_mode["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 lvim.keys.normal_mode["x"] = '"_x'
 lvim.keys.normal_mode["X"] = '"_X'
 lvim.keys.visual_mode["p"] = '"_dP'
+lvim.keys.visual_mode["s"] = '"_s'
 
 vim.cmd [[
   map Q gq
@@ -66,11 +67,10 @@ lvim.builtin.which_key.mappings.o = {
 -- Builtin plugins
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.terminal.shade_terminals = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = "maintained"
+lvim.builtin.treesitter.ensure_installed = { "c", "bash", "python", "lua", "cpp", "bibtex" }
 lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.treesitter.indent.disable = { "python" }
@@ -155,7 +155,7 @@ lvim.plugins = {
 -- THEMES
 
 vim.g.tokyonight_style = "night"
-vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent = false
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
@@ -172,4 +172,5 @@ lvim.autocommands.custom_groups = {
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom", "set filetype=groff" },
   { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
+  { "VimEnter", "*", [[silent exec "!kill -s SIGWINCH" getpid()]] },
 }

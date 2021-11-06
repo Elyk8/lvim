@@ -1,26 +1,43 @@
 local M = {}
 
 M.formatters = function()
-  lvim.lang.cpp.formatters = { { exe = "uncrustify" } }
-  lvim.lang.c.formatters = { { exe = "uncrustify" } }
-  lvim.lang.javascript.formatters = { { exe = "prettierd" } }
-  lvim.lang.json.formatters = { { exe = "prettierd" } }
-  lvim.lang.lua.formatters = { { exe = "stylua" } }
-  lvim.lang.python.formatters = { { exe = "black" } }
-  lvim.lang.sh.formatters = {
+  lvim.lang.markdown.formatters = { { exe = "prettierd" } }
+  -- set a formatter, this will override the language server formatting capabilities (if it exists)
+  local formatters = require "lvim.lsp.null-ls.formatters"
+  formatters.setup {
+    {
+      exe = "black",
+      filetypes = { "python" },
+    },
+    {
+      exe = "uncrustify",
+      filetypes = { "c", "cpp" },
+    },
+    {
+      exe = "stylua",
+      filetypes = { "lua" },
+    },
     {
       exe = "shfmt",
-      args = { "-ln", "posix", "-ci", "-kp" },
+      filetypes = { "sh", "zsh", "bash" },
+      args = { "-ln", "posix", "-ci", "-kp", "-fn" },
+    },
+    {
+      exe = "prettier",
+      ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+      filetypes = { "typescript", "typescriptreact", "markdown" },
     },
   }
-  lvim.lang.markdown.formatters = { { exe = "prettierd" } }
 end
 
 M.linters = function()
-  lvim.lang.python.linters = { { exe = "flake8" } }
-  lvim.lang.cpp.linters = { { exe = "cppcheck" } }
-  lvim.lang.c.linters = { { exe = "cppcheck" } }
-  lvim.lang.sh.linters = { { exe = "shellcheck" } }
+  -- set additional linters
+  local linters = require "lvim.lsp.null-ls.linters"
+  linters.setup {
+    { exe = "flake8", filetypes = { "python" } },
+    { exe = "cppcheck", filetypes = { "c", "cpp" } },
+    { exe = "shellcheck", filetypes = { "sh", "zsh", "bash" } },
+  }
 end
 
 return M
