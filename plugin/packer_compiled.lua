@@ -115,6 +115,12 @@ _G.packer_plugins = {
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-tabnine"] = {
+    config = { "\27LJ\1\2p\0\0\4\0\4\0\b4\0\0\0%\1\1\0>\0\2\2\16\2\0\0007\1\2\0003\3\3\0>\1\3\1G\0\1\0\1\0\3\20max_num_results\3\20\14max_lines\3è\a\tsort\2\nsetup\23cmp_tabnine.config\frequire\0" },
+    loaded = true,
+    path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/cmp-tabnine",
+    url = "https://github.com/tzachar/cmp-tabnine"
+  },
   cmp_luasnip = {
     loaded = true,
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/cmp_luasnip",
@@ -242,6 +248,13 @@ _G.packer_plugins = {
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/elyk/.local/share/lunarvim/site/pack/packer/opt/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/nvim-web-devicons",
@@ -354,6 +367,10 @@ time([[Config for indent-blankline.nvim]], false)
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\1\2?\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: cmp-tabnine
+time([[Config for cmp-tabnine]], true)
+try_loadstring("\27LJ\1\2p\0\0\4\0\4\0\b4\0\0\0%\1\1\0>\0\2\2\16\2\0\0007\1\2\0003\3\3\0>\1\3\1G\0\1\0\1\0\3\20max_num_results\3\20\14max_lines\3è\a\tsort\2\nsetup\23cmp_tabnine.config\frequire\0", "config", "cmp-tabnine")
+time([[Config for cmp-tabnine]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
@@ -390,11 +407,12 @@ vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-lastplace', 'Comment.nvim', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-lastplace', 'gitsigns.nvim', 'Comment.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'dashboard-nvim', 'toggleterm.nvim', 'which-key.nvim', 'barbar.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au WinScrolled * ++once lua require("packer.load")({'neoscroll.nvim'}, { event = "WinScrolled *" }, _G.packer_plugins)]]
-vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-matchup'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-colorizer.lua'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-matchup'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]

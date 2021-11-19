@@ -1,66 +1,10 @@
 --  GENERAL
-
-lvim.format_on_save = false
-lvim.lint_on_save = true
-lvim.colorscheme = "tokyonight"
-lvim.transparent_window = false
-lvim.line_wrap_cursor_movement = false
-
--- SETTINGS
-
-vim.opt.foldenable = true -- Turn on folding
-vim.opt.foldlevel = 0 -- Autofold everything by default
-vim.opt.foldnestmax = 1 -- I only like to fold outer functions
-vim.opt.foldmethod = "marker"
-
-vim.opt.inccommand = "split" -- Preview substitute live
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- KEYMAPPINGS
-
--- Remaps
-lvim.leader = "space"
-
--- yank to the end of line
-lvim.keys.normal_mode["Y"] = "y$"
--- paste on cursor
-lvim.keys.normal_mode["gP"] = "i<CR><Esc>PkJxJx"
-lvim.keys.normal_mode["gp"] = "a<CR><Esc>PkJxJx"
-
--- save keypresses
-lvim.keys.normal_mode["o"] = "o<Esc>"
-lvim.keys.normal_mode["O"] = "O<Esc>"
-lvim.keys.normal_mode["<esc><esc>"] = "ze"
-
-lvim.keys.insert_mode["<C-s>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
-
--- replace currently selected text with default register without yanking it
-lvim.keys.normal_mode["x"] = '"_x'
-lvim.keys.normal_mode["X"] = '"_X'
-lvim.keys.visual_mode["p"] = '"_dP'
-lvim.keys.visual_mode["s"] = '"_s'
-
-vim.cmd [[
-  map Q gq
-  map ; :
-]]
-
--- LSP Settings
+require("user.settings")
+require("user.keys")
+require('user.bufferline')
+require('user.plugins')
 
 lvim.lsp.diagnostics.virtual_text = false
-
-require("user.external-helpers").formatters()
-require("user.external-helpers").linters()
-
--- Additional Leader bindings for WhichKey
-lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
-lvim.builtin.which_key.mappings.o = {
-  name = "+Scripts",
-  c = { [[<cmd>terminal compiler %<CR>]], "Compile using compiler" },
-  p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
-  s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
-}
 
 -- PLUGINS
 
@@ -75,82 +19,10 @@ lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.treesitter.indent.disable = { "python" }
 
--- Additional Plugins
-lvim.plugins = {
-  {
-    "ethanholz/nvim-lastplace",
-    event = "BufRead",
-    config = function()
-      require("user.nvim-lastplace").config()
-    end,
-  },
-  { "folke/tokyonight.nvim" },
-  {
-    "norcalli/nvim-colorizer.lua",
-    event = "BufReadPre",
-    config = function()
-      require("user.colorizer").config()
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    -- event = "BufReadPre",
-    config = function()
-      require "user.blankline"
-    end,
-  },
-  {
-    "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewFocusFiles",
-      "DiffviewRefresh",
-      "DiffviewToggleFiles",
-    },
-  },
-  {
-    "lervag/vimtex",
-    ft = "tex",
-    config = function()
-      vim.cmd "call vimtex#init()"
-    end,
-  },
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function()
-      require("user.zen").config()
-    end,
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    ft = "markdown",
-  },
-  {
-    "andymass/vim-matchup",
-    event = "CursorMoved",
-    config = function()
-      require "user.matchup"
-    end,
-  },
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require("user.neoscroll").config()
-    end,
-  },
-  {
-    "phaazon/hop.nvim",
-    as = "hop",
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require("user.hop").config()
-    end,
-  },
-}
+lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
+if lvim.builtin.fancy_statusline.active then
+  require("user.lualine").config()
+end
 
 -- THEMES
 
@@ -161,16 +33,3 @@ vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-
--- OTHERS
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-  { "BufRead,BufNewFile", [[Xresources,Xdefaults,xresources,xdefaults,*.xresources]], "set filetype=xdefaults" },
-  { "BufRead,BufNewFile", "*.tsv", "set filetype=tsv" },
-  { "BufWritePost", "bm-dirs,bm-files", "!shortcuts" },
-  { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb %" },
-  { "BufRead,BufNewFile", "*.ms,*.me,*.mom", "set filetype=groff" },
-  { "BufRead,BufNewFile", "*.rasi", "set filetype=rasi" },
-  { "VimEnter", "*", [[silent exec "!kill -s SIGWINCH" getpid()]] },
-}
