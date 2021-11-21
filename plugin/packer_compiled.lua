@@ -291,6 +291,11 @@ _G.packer_plugins = {
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
+  ["telescope-vim-bookmarks.nvim"] = {
+    loaded = true,
+    path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/telescope-vim-bookmarks.nvim",
+    url = "https://github.com/tom-anders/telescope-vim-bookmarks.nvim"
+  },
   ["telescope.nvim"] = {
     config = { "\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\24lvim.core.telescope\frequire\0" },
     loaded = true,
@@ -309,6 +314,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-bookmarks"] = {
+    config = { "\27LJ\1\2�\3\0\0\2\0\16\00014\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\5\0:\1\4\0004\0\0\0007\0\1\0'\1\1\0:\1\6\0004\0\0\0007\0\1\0'\1\0\0:\1\a\0004\0\0\0007\0\1\0'\1\0\0:\1\b\0004\0\0\0007\0\1\0'\1\0\0:\1\t\0004\0\0\0007\0\1\0'\1\0\0:\1\n\0004\0\0\0007\0\1\0'\1\0\0:\1\v\0004\0\0\0007\0\1\0'\1\1\0:\1\f\0004\0\0\0007\0\1\0'\1\0\0:\1\r\0004\0\0\0007\0\1\0'\1\1\0:\1\14\0004\0\0\0007\0\1\0'\1\0\0:\1\15\0G\0\1\0 bookmark_display_annotation\27bookmark_disable_ctrlp\27bookmark_location_list\20bookmark_center\26bookmark_show_warning\"bookmark_save_per_working_dir\31bookmark_manage_per_buffer\24bookmark_auto_close\23bookmark_auto_save%bookmark_no_default_key_mappings\b☰\29bookmark_annotation_sign\b\18bookmark_sign\6g\bvim\0" },
+    loaded = true,
+    path = "/home/elyk/.local/share/lunarvim/site/pack/packer/start/vim-bookmarks",
+    url = "https://github.com/MattesGroeger/vim-bookmarks"
   },
   ["vim-matchup"] = {
     after_files = { "/home/elyk/.local/share/lunarvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
@@ -347,6 +358,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: vim-bookmarks
+time([[Config for vim-bookmarks]], true)
+try_loadstring("\27LJ\1\2�\3\0\0\2\0\16\00014\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\5\0:\1\4\0004\0\0\0007\0\1\0'\1\1\0:\1\6\0004\0\0\0007\0\1\0'\1\0\0:\1\a\0004\0\0\0007\0\1\0'\1\0\0:\1\b\0004\0\0\0007\0\1\0'\1\0\0:\1\t\0004\0\0\0007\0\1\0'\1\0\0:\1\n\0004\0\0\0007\0\1\0'\1\0\0:\1\v\0004\0\0\0007\0\1\0'\1\1\0:\1\f\0004\0\0\0007\0\1\0'\1\0\0:\1\r\0004\0\0\0007\0\1\0'\1\1\0:\1\14\0004\0\0\0007\0\1\0'\1\0\0:\1\15\0G\0\1\0 bookmark_display_annotation\27bookmark_disable_ctrlp\27bookmark_location_list\20bookmark_center\26bookmark_show_warning\"bookmark_save_per_working_dir\31bookmark_manage_per_buffer\24bookmark_auto_close\23bookmark_auto_save%bookmark_no_default_key_mappings\b☰\29bookmark_annotation_sign\b\18bookmark_sign\6g\bvim\0", "config", "vim-bookmarks")
+time([[Config for vim-bookmarks]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\1\2B\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
@@ -375,18 +390,18 @@ time([[Config for cmp-tabnine]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
--- Config for: hop
-time([[Config for hop]], true)
-try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\vconfig\ruser.hop\frequire\0", "config", "hop")
-time([[Config for hop]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 try_loadstring("\27LJ\1\2?\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\22lvim.core.project\frequire\0", "config", "project.nvim")
 time([[Config for project.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: hop
+time([[Config for hop]], true)
+try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\vconfig\ruser.hop\frequire\0", "config", "hop")
+time([[Config for hop]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
