@@ -52,25 +52,32 @@ local mode = function()
   local mod = vim.fn.mode()
   if mod == "n" or mod == "no" or mod == "nov" then
     -- return "  "
-    return "▊ "
+    -- return "▊ "
+    return "-- Normal --"
   elseif mod == "i" or mod == "ic" or mod == "ix" then
     -- return "  "
-    return "▊ "
+    -- return "▊ "
+    return "-- Insert --"
   elseif mod == "V" or mod == "v" or mod == "vs" or mod == "Vs" or mod == "cv" then
     -- return "  "
-    return "▊ "
+    -- return "▊ "
+    return "-- Visual --"
   elseif mod == "c" or mod == "ce" then
     -- return " ﴣ "
-    return "▊ "
+    -- return "▊ "
+    return "-- Commmand --"
   elseif mod == "r" or mod == "rm" or mod == "r?" then
     -- return "  "
-    return "▊ "
+    -- return "▊ "
+    return "-- Normal --"
   elseif mod == "R" or mod == "Rc" or mod == "Rv" or mod == "Rv" then
     -- return "  "
-    return "▊ "
+    -- return "▊ "
+    return "-- Replace --"
   end
   -- return "  "
-  return "▊ "
+  -- return "▊ "
+  return "-- Normal --"
 end
 local file_icons = {
   Brown = { "" },
@@ -148,20 +155,26 @@ local function get_file_icon_color()
 end
 
 local default_colors = {
-  bg = "#24283b",
-  bg_alt = "#24283b",
-  fg = "#c0caf5",
-  yellow = "#9ECE6A",
-  yellow_orange = "#98C379",
-  cyan = "#4ABAAF",
-  light_blue = "#7dcfff",
-  green = "#98C379",
-  orange = "#ff9e64",
-  violet = "#C678DD",
-  magenta = "#9A7ECC",
-  blue = "#7AA2F7",
-  red = "#F7768E",
-  git = { change = "#9699a3", add = "#8f5e15", delete = "#634f30", conflict = "#E06C75" },
+  bg = "#252525",
+  bg_alt = "#252525",
+  -- bg = "#68217a",
+  -- bg_alt = "#68217a",
+  -- bg = "#327ac6",
+  -- bg_alt = "#327ac6",
+  -- bg = "#007acc",
+  -- bg_alt = "#007acc",
+  fg = "#d4d4d4",
+  yellow = "#dcdcaa",
+  yellow_orange = "#d7ba7d",
+  cyan = "#4ec9b0",
+  light_blue = "#9cdcfe",
+  green = "#6a9955",
+  orange = "#ce9178",
+  violet = "#c586c0",
+  magenta = "#d16d9e",
+  blue = "#569cd6",
+  red = "#d16969",
+  git = { change = "#0c7d9d", add = "#587c0c", delete = "#94151b", conflict = "#bb7a61" },
 }
 
 M.config = function()
@@ -169,26 +182,26 @@ M.config = function()
   colors = default_colors
   -- Color table for highlights
   local mode_color = {
-    n = colors.blue,
-    i = colors.green,
-    v = colors.violet,
-    [""] = colors.magenta,
-    V = colors.violet,
-    c = colors.cyan,
-    no = colors.yellow,
-    s = colors.orange,
-    S = colors.orange,
-    [""] = colors.orange,
-    ic = colors.yellow_orange,
-    R = colors.red,
-    Rv = colors.red,
-    cv = colors.light_blue,
-    ce = colors.light_blue,
-    r = colors.cyan,
-    rm = colors.cyan,
-    ["r?"] = colors.cyan,
-    ["!"] = colors.red,
-    t = colors.red,
+    n = colors.fg,
+    i = colors.fg,
+    v = colors.fg,
+    [""] = colors.fg,
+    V = colors.fg,
+    c = colors.fg,
+    no = colors.fg,
+    s = colors.fg,
+    S = colors.fg,
+    [""] = colors.fg,
+    ic = colors.fg,
+    R = colors.fg,
+    Rv = colors.fg,
+    cv = colors.fg,
+    ce = colors.fg,
+    r = colors.fg,
+    rm = colors.fg,
+    ["r?"] = colors.fg,
+    ["!"] = colors.fg,
+    t = colors.fg,
   }
   local conditions = {
     buffer_not_empty = function()
@@ -213,7 +226,7 @@ M.config = function()
   -- Config
   local config = {
     options = {
-      icons_enabled = true,
+      icons_enabled = false,
       -- Disable sections and component separators
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
@@ -250,7 +263,8 @@ M.config = function()
               "hi! LualineModeInactive guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg_alt
             )
             -- return ""
-            return "▊"
+            -- return "▊"
+            return ""
             -- return mode()
           end,
           color = "LualineModeInactive",
@@ -260,7 +274,7 @@ M.config = function()
         {
           "filename",
           cond = conditions.buffer_not_empty,
-          color = { fg = colors.blue, gui = "bold" },
+          color = { fg = colors.fg, gui = "bold" },
         },
       },
       lualine_x = {},
@@ -278,25 +292,11 @@ M.config = function()
   end
 
   ins_left {
-    -- mode component
-    function()
-      -- auto change color according to neovims mode
-      vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-      return mode()
-      -- return ""
-    end,
-
-    -- color = { fg = colors.red },
-    color = "LualineMode",
-    padding = { left = 0, right = 0 },
-    -- left_padding = 1,
-  }
-  ins_left {
     function()
       return "  "
     end,
     cond = conditions.check_git_workspace,
-    color = { fg = colors.orange }, -- Sets highlighting of component
+    color = { fg = colors.fg }, -- Sets highlighting of component
     padding = 0,
   }
   ins_left {
@@ -348,17 +348,45 @@ M.config = function()
   --   padding = { left = 1, right = 1 },
   --   color = { fg = colors.fg, gui = "bold" },
   -- }
+  local ok, _ = pcall(require, "vim.diagnostic")
+  if ok then
+    ins_left {
+      "diagnostics",
+      sources = { "nvim" },
+      symbols = { error = " ", warn = " ", info = " ", hint = " " },
+      sections = { "error", "warn" },
+      -- sections = {'error', 'warn', 'info', 'hint'},
+      -- cond = conditions.hide_in_width,
+      colored = false,
+      always_visible = true,
+      padding = { left = 2, right = 2 },
+    }
+  else
+    ins_left {
+      "diagnostics",
+      sources = { "nvim_lsp" },
+      sections = { "error", "warn" },
+      -- sections = {'error', 'warn', 'info', 'hint'},
+      symbols = { error = " ", warn = " ", info = " ", hint = " " },
+      -- cond = conditions.hide_in_width,
+      colored = false,
+      always_visible = true,
+      padding = { left = 2, right = 2 },
+    }
+  end
   ins_left {
-    "diff",
-    source = diff_source,
-    symbols = { added = "  ", modified = "柳", removed = " " },
-    diff_color = {
-      added = { fg = colors.git.add },
-      modified = { fg = colors.git.change },
-      removed = { fg = colors.git.delete },
-    },
-    color = {},
-    cond = nil,
+    -- mode component
+    function()
+      -- auto change color according to neovims mode
+      vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+      return mode()
+      -- return ""
+    end,
+
+    -- color = { fg = colors.red },
+    color = "LualineMode",
+    padding = { left = 0, right = 0 },
+    -- left_padding = 1,
   }
   ins_left {
     function()
@@ -376,7 +404,7 @@ M.config = function()
       end
       return ""
     end,
-    color = { fg = colors.green },
+    color = { fg = colors.fg },
     cond = conditions.hide_in_width,
   }
   ins_left {
@@ -431,38 +459,35 @@ M.config = function()
       end
       return "" -- """
     end,
-    color = { fg = colors.red },
+    color = { fg = colors.fg },
   }
 
-  local ok, _ = pcall(require, "vim.diagnostic")
-  if ok then
-    ins_right {
-      "diagnostics",
-      sources = { "nvim" },
-      symbols = { error = " ", warn = " ", info = " ", hint = " " },
-      cond = conditions.hide_in_width,
-    }
-  else
-    ins_right {
-      "diagnostics",
-      sources = { "nvim_lsp" },
-      symbols = { error = " ", warn = " ", info = " ", hint = " " },
-      cond = conditions.hide_in_width,
-    }
-  end
   ins_right {
-    function()
-      if next(vim.treesitter.highlighter.active) then
-        return "  "
-      end
-      return ""
-    end,
-    padding = 0,
-    -- left_padding = 0,
-    -- right_padding = 0,
-    color = { fg = colors.green },
+    "diff",
+    source = diff_source,
+    symbols = { added = "  ", modified = "柳", removed = " " },
+    diff_color = {
+      added = { fg = colors.fg },
+      modified = { fg = colors.fg },
+      removed = { fg = colors.fg },
+    },
+    color = {},
     cond = conditions.hide_in_width,
+    -- cond = nil,
   }
+  -- ins_right {
+  --   function()
+  --     if next(vim.treesitter.highlighter.active) then
+  --       return "  "
+  --     end
+  --     return ""
+  --   end,
+  --   padding = 0,
+  --   -- left_padding = 0,
+  --   -- right_padding = 0,
+  --   color = { fg = colors.green },
+  --   cond = conditions.hide_in_width,
+  -- }
   ins_right {
     function(msg)
       msg = msg or "LS Inactive"
@@ -515,11 +540,19 @@ M.config = function()
       end
       vim.list_extend(buf_client_names, supported_linters)
 
-      return table.concat(buf_client_names, ", ")
+      return "[" .. table.concat(buf_client_names, ", ") .. "]"
     end,
     icon = " ",
     color = { fg = colors.fg },
     cond = conditions.hide_in_width_lsp,
+  }
+
+  ins_right {
+    function()
+      return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
+    end,
+    cond = conditions.hide_in_width,
+    color = { fg = colors.fg, bg = colors.bg },
   }
 
   ins_right {
@@ -563,10 +596,17 @@ M.config = function()
   --   cond = conditions.hide_in_width,
   -- }
 
+  -- ins_right {
+  --   clock,
+  --   cond = conditions.hide_in_width,
+  --   color = { fg = colors.blue, bg = colors.bg },
+  -- }
+
   ins_right {
-    clock,
+    "filetype",
     cond = conditions.hide_in_width,
-    color = { fg = colors.blue, bg = colors.bg },
+    color = { fg = colors.fg, bg = colors.bg },
+    icon = "",
   }
 
   ins_right {
@@ -581,7 +621,7 @@ M.config = function()
     padding = 1,
     -- left_padding = 0,
     -- right_padding = 0,
-    color = { fg = colors.yellow_orange, bg = colors.bg },
+    color = { fg = colors.fg, bg = colors.bg },
     cond = nil,
   }
 

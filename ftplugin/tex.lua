@@ -1,8 +1,12 @@
 vim.g.vimtex_compiler_method = "latexmk"
-vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_view_method = "general"
 vim.g.vimtex_fold_enabled = 0
 vim.g.vimtex_quickfix_open_on_warning = 0
 vim.g.vimtex_quickfix_autoclose_after_keystrokes = 5
+
+vim.g.vimtex_view_general_viewer = 'okular'
+vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
+vim.g.vimtex_view_general_options_latexmk = '--unique'
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

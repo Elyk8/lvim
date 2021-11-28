@@ -22,6 +22,38 @@ lvim.plugins = {
   },
   { "folke/tokyonight.nvim" },
   {
+    "NTBBloodbath/doom-one.nvim",
+    config = function()
+      require("doom-one").setup {
+        cursor_coloring = false,
+        terminal_colors = false,
+        italic_comments = true,
+        enable_treesitter = true,
+        transparent_background = false,
+        pumblend = {
+          enable = true,
+          transparency_amount = 20,
+        },
+        plugins_integrations = {
+          neorg = true,
+          barbar = true,
+          bufferline = false,
+          gitgutter = false,
+          gitsigns = true,
+          telescope = false,
+          neogit = true,
+          nvim_tree = true,
+          dashboard = true,
+          startify = true,
+          whichkey = true,
+          indent_blankline = true,
+          vim_illuminate = true,
+          lspsaga = false,
+        },
+      }
+    end,
+  },
+  {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
     config = function()
@@ -92,7 +124,7 @@ lvim.plugins = {
       -- highlight BookmarkSign ctermbg=NONE ctermfg=160
       -- highlight BookmarkLine ctermbg=194 ctermfg=NONE
       vim.g.bookmark_sign = ""
-      vim.g.bookmark_annotation_sign = '☰'
+      vim.g.bookmark_annotation_sign = "☰"
       vim.g.bookmark_no_default_key_mappings = 1
       vim.g.bookmark_auto_save = 0
       vim.g.bookmark_auto_close = 0
@@ -106,9 +138,9 @@ lvim.plugins = {
       vim.g.bookmark_display_annotation = 0
       -- vim.g.bookmark_auto_save_file = '~/.config/lvim/bookmarks'
     end,
-    commit = "a86f6387a5dabf0102b4cab433b414a29456f792"
+    commit = "a86f6387a5dabf0102b4cab433b414a29456f792",
   },
   {
-    'tom-anders/telescope-vim-bookmarks.nvim'
-  }
+    "tom-anders/telescope-vim-bookmarks.nvim",
+  },
 }
