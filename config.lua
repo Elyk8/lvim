@@ -5,7 +5,7 @@ lvim.colorscheme = "doom-one"
 lvim.transparent_window = false
 lvim.line_wrap_cursor_movement = false
 
---  GENERAL
+-- General
 require("user.settings")
 require("user.keys")
 require('user.bufferline')
@@ -13,7 +13,7 @@ require('user.plugins')
 
 lvim.lsp.diagnostics.virtual_text = false
 
--- PLUGINS
+-- Plugins
 
 -- Builtin plugins
 lvim.builtin.dashboard.active = true

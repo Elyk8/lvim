@@ -7,6 +7,7 @@ vim.opt.foldmethod = "marker"
 vim.opt.inccommand = "split" -- Preview substitute live
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.relativenumber = true
 
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

@@ -8,12 +8,6 @@ vim.g.vimtex_view_general_viewer = 'okular'
 vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
 vim.g.vimtex_view_general_options_latexmk = '--unique'
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.conceallevel = 2
-
 lvim.builtin.which_key.mappings.t = {
   name = "+Latex",
   c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
@@ -39,3 +33,9 @@ augroup vimtex_event_1
   au User VimtexEventQuit     call vimtex#compiler#clean(0)
 augroup END
 ]]
+
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.conceallevel = 2
