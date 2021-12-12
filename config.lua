@@ -1,7 +1,7 @@
 -- Lunarvim
 lvim.format_on_save = false
 lvim.lint_on_save = true
-lvim.colorscheme = "doom-one"
+lvim.colorscheme = "darkplus"
 lvim.transparent_window = false
 lvim.line_wrap_cursor_movement = false
 

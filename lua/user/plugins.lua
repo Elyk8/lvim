@@ -13,44 +13,12 @@ lvim.plugins = {
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   },
+  { "LunarVim/Colorschemes" },
   {
     "ethanholz/nvim-lastplace",
     event = "BufRead",
     config = function()
       require("user.nvim-lastplace").config()
-    end,
-  },
-  { "folke/tokyonight.nvim" },
-  {
-    "NTBBloodbath/doom-one.nvim",
-    config = function()
-      require("doom-one").setup {
-        cursor_coloring = false,
-        terminal_colors = false,
-        italic_comments = true,
-        enable_treesitter = true,
-        transparent_background = false,
-        pumblend = {
-          enable = true,
-          transparency_amount = 20,
-        },
-        plugins_integrations = {
-          neorg = true,
-          barbar = true,
-          bufferline = false,
-          gitgutter = false,
-          gitsigns = true,
-          telescope = false,
-          neogit = true,
-          nvim_tree = true,
-          dashboard = true,
-          startify = true,
-          whichkey = true,
-          indent_blankline = true,
-          vim_illuminate = true,
-          lspsaga = false,
-        },
-      }
     end,
   },
   {
@@ -142,5 +110,37 @@ lvim.plugins = {
   },
   {
     "tom-anders/telescope-vim-bookmarks.nvim",
+  },
+  {
+    "jakewvincent/mkdnflow.nvim",
+    ft = "markdown",
+    config = function()
+      require("user.mkdnflow").config()
+    end,
+  },
+  {
+    "ekickx/clipboard-image.nvim",
+    ft = "markdown",
+    config = function()
+      require("clipboard-image").setup {
+        -- Default configuration for all typefile
+        default = {
+          img_dir = "img",
+          img_dir_txt = "img",
+          img_name = function()
+            return os.date "%Y-%m-%d-%H-%M-%S"
+          end,
+          affix = "%s",
+        },
+        -- You can create configuration for ceartain filetype by creating another field (markdown, in this case)
+        -- If you're uncertain what to name your field to, you can run `:set filetype?`
+        -- Missing options from `markdown` field will be replaced by options from `default` field
+        markdown = {
+          img_dir = { "src", "assets", "img" }, -- Use table for nested dir (New feature form PR #20)
+          img_dir_txt = "/assets/img",
+          affix = "![](%s)",
+        },
+      }
+    end,
   },
 }
