@@ -36,14 +36,14 @@ M.config = function()
     --     This is evaluated at the time createLink() is run, which is to say
     --     that it's run whenever <CR> is pressed (under the default mappings).
     --     This makes for many interesting possibilities.
-    new_file_prefix = [[os.date('%Y-%m-%d_')]],
+    new_file_prefix = [[os.date('%Y-%m-%d-%H%M%S_')]],
 
     -- Type: boolean. When true and Mkdnflow is searching for the next/previous
     --     link in the file, it will wrap to the beginning of the file (if it's
     --     reached the end) or wrap to the end of the file (if it's reached the
     --     beginning during a backwards search).
-    wrap_to_beginning = false,
-    wrap_to_end = false,
+    wrap_to_beginning = true,
+    wrap_to_end = true,
   }
 end
 return M

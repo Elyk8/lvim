@@ -65,6 +65,44 @@ lvim.plugins = {
     ft = "markdown",
   },
   {
+    "jakewvincent/mkdnflow.nvim",
+    ft = "markdown",
+    config = function()
+      require("user.mkdnflow").config()
+    end,
+  },
+  {
+    "jubnzv/mdeval.nvim",
+    ft = "markdown",
+    config = function()
+      vim.g.markdown_fenced_languages = { "python", "cpp", "c", "sh" }
+      require("mdeval").setup {
+        -- Don't ask before executing code blocks
+        require_confirmation = false,
+        -- Change code blocks evaluation options.
+        eval_options = {
+          -- Set custom configuration for C++
+          cpp = {
+            command = { "clang++", "-std=c++20", "-O0" },
+            default_header = [[
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+      ]],
+          },
+          -- Add new configuration for Racket
+          racket = {
+            command = { "racket" }, -- Command to run interpreter
+            language_code = "racket", -- Markdown language code
+            exec_type = "interpreted", -- compiled or interpreted
+            extension = "rkt", -- File extension for temporary files
+          },
+        },
+      }
+    end,
+  },
+
+  {
     "andymass/vim-matchup",
     event = "CursorMoved",
     config = function()
@@ -112,13 +150,6 @@ lvim.plugins = {
     "tom-anders/telescope-vim-bookmarks.nvim",
   },
   {
-    "jakewvincent/mkdnflow.nvim",
-    ft = "markdown",
-    config = function()
-      require("user.mkdnflow").config()
-    end,
-  },
-  {
     "ekickx/clipboard-image.nvim",
     ft = "markdown",
     config = function()
@@ -132,12 +163,12 @@ lvim.plugins = {
           end,
           affix = "%s",
         },
-        -- You can create configuration for ceartain filetype by creating another field (markdown, in this case)
+        -- You can create configuration for certain filetype by creating another field (markdown, in this case)
         -- If you're uncertain what to name your field to, you can run `:set filetype?`
         -- Missing options from `markdown` field will be replaced by options from `default` field
         markdown = {
-          img_dir = { "src", "assets", "img" }, -- Use table for nested dir (New feature form PR #20)
-          img_dir_txt = "/assets/img",
+          img_dir = { "%:p:h", "images" },
+          img_dir_txt = "images",
           affix = "![](%s)",
         },
       }

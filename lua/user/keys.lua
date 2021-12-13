@@ -24,6 +24,7 @@ lvim.keys.visual_mode["p"] = '"_dP'
 lvim.keys.visual_mode["s"] = '"_s'
 
 lvim.keys.normal_mode["<F1>"] = ":e ~/wiki/index.md<cr>"
+lvim.keys.normal_mode["<F2>"] = "<cmd>Telescope find_files<cr>"
 lvim.keys.normal_mode["<F3>"] = ":e .<cr>"
 lvim.keys.normal_mode["<F4>"] = "<cmd>Telescope resume<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>Telescope commands<CR>"
