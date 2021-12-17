@@ -27,7 +27,7 @@ lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.treesitter.indent.disable = { "python" }
 
-lvim.builtin.fancy_statusline = { active = false } -- enable/disable fancy statusline
+lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 if lvim.builtin.fancy_statusline.active then
   require("user.lualine").config()
 end

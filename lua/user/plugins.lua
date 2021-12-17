@@ -13,7 +13,7 @@ lvim.plugins = {
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   },
-  { "LunarVim/Colorschemes" },
+  { "LunarVim/darkplus.nvim" },
   {
     "ethanholz/nvim-lastplace",
     event = "BufRead",
