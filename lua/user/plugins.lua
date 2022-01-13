@@ -174,4 +174,10 @@ lvim.plugins = {
       }
     end,
   },
+  {
+    "nvim-neorg/neorg",
+    config = function()
+      require("user.neorg").config()
+    end,
+  },
 }

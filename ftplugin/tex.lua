@@ -6,7 +6,6 @@ vim.g.vimtex_quickfix_autoclose_after_keystrokes = 5
 
 vim.g.vimtex_view_general_viewer = 'okular'
 vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-vim.g.vimtex_view_general_options_latexmk = '--unique'
 
 lvim.builtin.which_key.mappings.t = {
   name = "+Latex",

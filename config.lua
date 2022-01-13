@@ -6,10 +6,10 @@ lvim.transparent_window = false
 lvim.line_wrap_cursor_movement = false
 
 -- General
-require("user.settings")
-require("user.keys")
-require('user.bufferline')
-require('user.plugins')
+require "user.settings"
+require "user.keys"
+require "user.bufferline"
+require "user.plugins"
 
 lvim.lsp.diagnostics.virtual_text = false
 
@@ -22,7 +22,18 @@ lvim.builtin.terminal.shade_terminals = false
 lvim.builtin.autopairs.hide_dotfiles = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = "maintained"
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "norg",
+  "norg_meta",
+  "norg_table",
+  "c",
+  "cpp",
+  "latex",
+  "markdown",
+  "lua",
+  "haskell",
+}
 lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.treesitter.indent.disable = { "python" }
