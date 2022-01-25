@@ -6,8 +6,8 @@ lvim.transparent_window = false
 lvim.line_wrap_cursor_movement = false
 
 -- General
-require "user.settings"
-require "user.keys"
+require "config.settings"
+require "config.keys"
 require "user.bufferline"
 require "user.plugins"
 
@@ -19,6 +19,7 @@ lvim.lsp.diagnostics.virtual_text = false
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.shade_terminals = false
+lvim.builtin.notify.active = true
 lvim.builtin.autopairs.hide_dotfiles = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -33,12 +34,13 @@ lvim.builtin.treesitter.ensure_installed = {
   "markdown",
   "lua",
   "haskell",
+  "rasi",
 }
 lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.treesitter.indent.disable = { "python" }
 
-lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
+lvim.builtin.fancy_statusline = { active = false } -- enable/disable fancy statusline
 if lvim.builtin.fancy_statusline.active then
   require("user.lualine").config()
 end

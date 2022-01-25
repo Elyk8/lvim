@@ -51,6 +51,7 @@ vim.cmd [[
 ]]
 
 -- WhichKey
+lvim.builtin.which_key.mappings.n = { "<LocalLeader>", "Local Leader" }
 lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
 lvim.builtin.which_key.mappings.o = {
   name = "+Scripts",

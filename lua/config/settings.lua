@@ -21,7 +21,6 @@ lvim.autocommands.custom_groups = {
   { "BufWritePost", "bm-dirs,bm-files", "!shortcuts" },
   { "BufWritePost", "Xresources,Xdefaults,xresources,xdefaults", "!xrdb -merge %" },
   { "BufRead,BufNewFile", "*.ms,*.me,*.mom", "set filetype=groff" },
-  { "BufRead,BufNewFile", "/*.rasi", "set filetype=css" },
 }
 -- Only a problem with alacritty
 -- { "VimEnter", "*", [[silent exec "!kill -s SIGWINCH" getpid()]] },
