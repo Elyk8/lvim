@@ -8,11 +8,20 @@ lvim.keys.normal_mode["Y"] = "y$"
 lvim.keys.normal_mode["gP"] = "i<CR><Esc>PkJxJx"
 lvim.keys.normal_mode["gp"] = "a<CR><Esc>PkJxJx"
 
+-- keeping it centered
+lvim.keys.normal_mode["n"] = "nzzzv"
+lvim.keys.normal_mode["N"] = "Nzzzv"
+lvim.keys.normal_mode["J"] = "mzJ`z"
+
+-- undo break points
+lvim.keys.insert_mode[","] = ",<c-g>u"
+lvim.keys.insert_mode["."] = ".<c-g>u"
+lvim.keys.insert_mode["!"] = "!<c-g>u"
+lvim.keys.insert_mode["?"] = "?<c-g>u"
+
 -- save keypresses
-lvim.keys.normal_mode["o"] = "o<Esc>"
-lvim.keys.normal_mode["O"] = "O<Esc>"
 lvim.keys.normal_mode["<esc><esc>"] = "ze"
-lvim.keys.normal_mode["X"] = "<cmd>BufferClose!<CR>"
+lvim.keys.normal_mode["X"] = "<cmd>BufferKill<CR>"
 
 lvim.keys.insert_mode["<C-l>"] = "<c-g>u<Esc>[s1z=`]a<c-g>u"
 lvim.keys.normal_mode["<C-s>"] = "<cmd>wa!<CR>"
@@ -47,18 +56,20 @@ lvim.keys.normal_mode["mu"] = '<cmd>lua require("harpoon.ui").toggle_quick_menu(
 
 vim.cmd [[
   map Q gq
-  map ; :
 ]]
 
 -- WhichKey
-lvim.builtin.which_key.mappings.n = { "<LocalLeader>", "Local Leader" }
-lvim.builtin.which_key.mappings.z = { "<cmd>ZenMode<cr>", "Zen" }
-lvim.builtin.which_key.mappings.o = {
+lvim.builtin.which_key.mappings["S"] = { "<cmd>sp<cr>", "Split Horizontally" }
+lvim.builtin.which_key.mappings["v"] = { "<cmd>vsp<cr>", "Split Vertically" }
+lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", "Zen" }
+
+lvim.builtin.which_key.mappings["o"] = {
   name = "+Scripts",
   c = { [[<cmd>terminal compiler %<CR>]], "Compile using compiler" },
   p = { [[<cmd>!opout %<CR><CR>]], "Preview using compiler" },
   s = { [[<cmd>setlocal spell! spelllang=en_au<CR>]], "Toggle spell check" },
 }
+
 lvim.builtin.which_key.mappings["m"] = {
   name = "Replace",
   a = { "<cmd>BookmarkAnnotate<cr>", "Annotate" },

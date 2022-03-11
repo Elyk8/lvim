@@ -8,8 +8,8 @@ lvim.line_wrap_cursor_movement = false
 -- General
 require "config.settings"
 require "config.keys"
+require "config.plugins"
 require "user.bufferline"
-require "user.plugins"
 
 lvim.lsp.diagnostics.virtual_text = false
 
@@ -19,7 +19,7 @@ lvim.lsp.diagnostics.virtual_text = false
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.shade_terminals = false
-lvim.builtin.notify.active = true
+lvim.builtin.notify.active = false
 lvim.builtin.autopairs.hide_dotfiles = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
